@@ -81,3 +81,19 @@ DELETE  -->     to delete dat at server     --> DELETE
 
 
 
+[
+    {
+        "id" : 1,
+        "name" : "Chetan",
+        "imageUrl" : "./assets/images.jpg",
+        "email" : "chetan@gmail.com",
+        "mobile" : "9638527418",
+        "company" : "Eco Friendly",
+        "title" : "Save Enviornment",
+        "groupId" : {
+            "id" :100,
+            "groupName" : "GreenCity" 
+        }
+
+    }
+]

@@ -22,6 +22,13 @@ app.get("/", (request: Request, response: Response) => {
 // configure the routers
 
 import groupRouter from "./router/groupRouter";
+
+/** 
+@usage : to get all groups
+@methodm: GET
+@params : no-params
+@url : http://localhost:9987/groups
+*/
 app.use("/groups", groupRouter);
 
 app.listen(Number(port), () => {

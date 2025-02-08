@@ -1,7 +1,7 @@
 import express, { Application, Request, Response } from "express";
 import dotenv from "dotenv";
 import mongoose from "mongoose";
-import contactRouter from "./router/contactRouter";
+// import contactRouter from "./router/contactRouter";
 
 dotenv.config({ path: "./.env" });
 
@@ -29,22 +29,25 @@ import groupRouter from "./router/groupRouter";
 @params : no-params
 @url : http://localhost:9987/groups
 */
+
 app.use("/groups", groupRouter);
 
-app.listen(Number(port), () => {
-  if (dbUrl && dbName) {
-    mongoose
-      .connect(dbUrl, { dbName: dbName })
-      .then((dbResponse) => {
-        // console.log("Connection Established...", dbResponse);
-        console.log("Connection Established...");
-      })
-      .catch((error) => {
-        console.log(error);
-        process.exit(0); // force stop express server
-      });
-  }
-  console.log(`Expresss server started http://${hostName}:${port}`);
-});
+if (port) {
+  app.listen(Number(port), () => {
+    if (dbUrl && dbName) {
+      mongoose
+        .connect(dbUrl, { dbName: dbName })
+        .then((dbResponse) => {
+          // console.log("Connection Established...", dbResponse);
+          console.log("Connection Established...");
+        })
+        .catch((error) => {
+          console.log(error);
+          process.exit(0); // force stop express server
+        });
+    }
+    console.log(`Expresss server started http://${hostName}:${port}`);
+  });
+}
 
 // app.use("/api/contacts", contactRouter);

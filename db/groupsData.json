@@ -1,0 +1,16 @@
+[
+    {
+        "id" : 1,
+        "name" : "Chetan",
+        "imageUrl" : "",
+        "email" : "chetan@gmail.com",
+        "mobile" : "9638527418",
+        "company" : "Eco Friendly",
+        "title" : "Save Enviornment",
+        "groupId" : {
+            "id" :100,
+            "groupName" : "GreenCity" 
+        }
+
+    }
+]

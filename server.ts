@@ -3,7 +3,7 @@ import dotenv from "dotenv";
 import mongoose from "mongoose";
 // import contactRouter from "./router/contactRouter";
 
-dotenv.config({ path: "./.env" });
+dotenv.config({});
 
 const hostName: string = "127.0.0.1";
 
@@ -29,7 +29,7 @@ import groupRouter from "./router/groupRouter";
 @params : no-params
 @url : http://localhost:9987/groups
 */
-
+app.use(express.json());
 app.use("/groups", groupRouter);
 
 if (port) {

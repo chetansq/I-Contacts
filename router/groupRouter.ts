@@ -5,10 +5,10 @@ import { body } from "express-validator";
 const groupRouter: Router = Router();
 
 
-// @usage : get all groups
+// @usage  : get all groups
 // @method : get
 // @params : no-params
-// @url    :
+// @url    :http://127.0.0.1:9987/groups
 
 
 groupRouter.get("/", async (request: Request, response: Response) => {
@@ -16,15 +16,16 @@ groupRouter.get("/", async (request: Request, response: Response) => {
 });
 
 
-// @usage : create groups
+// @usage  : create groups
 // @method : POST
 // @params : name
-// @url    :
+// @url    :http://127.0.0.1:9987/groups
 
 
 groupRouter.post(
-  "/",
-  [body('name').not().isEmpty().withMessage("Name is Required")],
+  "/", // url pattern
+   
+  [body('name').not().isEmpty().withMessage("Name is Required")], // express validator / validation
 
   async (request: Request, response: Response) => {
 

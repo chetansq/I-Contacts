@@ -23,12 +23,12 @@ export const getAllGroups = async (request: Request, response: Response) => {
 // @url    :
 
 export const createGroups = async (request: Request, response: Response) => {
-  let { name } = request.body;
+  let { name } = request.body; // destructure
 
   // console.log("create groups ",name);
 
   let theGroup: IGroup | null | undefined = await new GroupTable({
-    name: name,
+    name: name, // assignment
   }).save();
 
   if (theGroup) {

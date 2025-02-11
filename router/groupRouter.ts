@@ -1,5 +1,7 @@
 import { Router, Request, Response } from "express";
 import * as groupController from "../controller/groupController";
+
+
 import { body } from "express-validator";
 
 const groupRouter: Router = Router();
@@ -34,5 +36,14 @@ console.log("post");
     await groupController.createGroups(request, response);
   }
 );
+
+// @usage  : to get a group
+// @method : get
+// @params : groupId
+// @url    :http://127.0.0.1:9987/groups
+
+groupRouter.get("/:GroupId", async (request: Request, response: Response) => {
+  await groupController.getGroup(request, response);
+});
 
 export default groupRouter;

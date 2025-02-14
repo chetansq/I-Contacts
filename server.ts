@@ -22,6 +22,7 @@ app.get("/", (request: Request, response: Response) => {
 // configure the routers
 
 import groupRouter from "./router/groupRouter";
+import UserRouter from "./router/UserRouter";
 
 /** 
 @usage : to get all groups
@@ -29,8 +30,22 @@ import groupRouter from "./router/groupRouter";
 @params : no-params
 @url : http://localhost:9987/groups
 */
+
+
 app.use(express.json());
 app.use("/groups", groupRouter);
+
+
+/** 
+@usage : to get all Users
+@methodm: GET
+@params : no-params
+@url : http://localhost:9987/users
+*/
+
+app.use(express.json());
+app.use("/users", UserRouter);
+
 
 if (port) {
   app.listen(Number(port), () => {

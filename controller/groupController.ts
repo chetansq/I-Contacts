@@ -1,6 +1,7 @@
 import { Request, Response } from "express";
 import { IGroup } from "../models/IGroup";
 import GroupTable from "../databases/GroupSchema";
+import mongoose from "mongoose";
 
 // @usage : to get all groups
 // @method : GET
@@ -15,6 +16,27 @@ export const getAllGroups = async (request: Request, response: Response) => {
   } catch (error: any) {
     return response.status(500).json({ msg: "Data  not found" });
   }
+};
+
+// @usage : to get all groups
+// @method : GET
+// @params : no-params
+
+export const getGroup = async (request: Request, response: Response) => {
+  let { GroupId } = request.params;
+
+  const mongoGroupId = new mongoose.Types.ObjectId(GroupId);
+
+  let theGroup: IGroup | null | undefined = await GroupTable.findById(
+    mongoGroupId
+  );
+  if (!theGroup) {
+    return response.status(200).json({
+      data: null,
+      msg: "No Group is Found",
+    });
+  }
+  return response.status(200).json(theGroup);
 };
 
 // @usage : create groups

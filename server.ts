@@ -23,6 +23,7 @@ app.get("/", (request: Request, response: Response) => {
 
 import groupRouter from "./router/groupRouter";
 import UserRouter from "./router/UserRouter";
+import contactRouter from "./router/contactRouter";
 
 /** 
 @usage : to get all groups
@@ -46,6 +47,9 @@ app.use("/groups", groupRouter);
 app.use(express.json());
 app.use("/users", UserRouter);
 
+
+app.use(express.json());
+app.use("/contacts", contactRouter);
 
 if (port) {
   app.listen(Number(port), () => {

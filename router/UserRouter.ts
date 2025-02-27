@@ -33,21 +33,30 @@ UserRouter.get("/", async (request: Request, response: Response) => {
     await UserController.getAllUsers(request, response)
 })
 
+// @usage : register User
+// @method : POST
+// @params : username, email, password 
+// @url : http://127.0.0.1:9989/users/register
 
-UserRouter.post("/", [body('username').not().isEmpty().withMessage("Name is Required")],
-    [body('email').not().isEmpty().withMessage("Email is Required")],
-    [body('password').not().isEmpty().withMessage("Password is Required")],
-    [body('imageUrl').not().isEmpty().withMessage("Image is Required")],
-    [body('isAdmin').not().isEmpty().withMessage("IsAdmin is Required")],
+UserRouter.post("/register",
+    [
+        body('username').not().isEmpty().withMessage("Name is Required"), // this is all validation (express-validation)
+        body('email').isEmail().withMessage("Email is Required"),
+        body('password').not().isStrongPassword().withMessage("Password is Required"),
+        // body('imageUrl').not().isEmpty().withMessage("Image is Required"),
+        // body('isAdmin').not().isEmpty().withMessage("IsAdmin is Required")
+    ],
 
     async (request: Request, response: Response) => {
         console.log("post");
-        await UserController.createUser(request, response);
+        await UserController.registerUser(request, response);
     }
+);
 
-)
-
-// update
+// @usage : register User
+// @method : POST
+// @params : username, email, password,imageUrl,isAdmin 
+// @url : http://127.0.0.1:9989/users/
 
 UserRouter.put("/:userId", async (request: Request, response: Response) => {
     await UserController.updateUser(request, response)
